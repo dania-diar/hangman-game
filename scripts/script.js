@@ -120,27 +120,27 @@ const renderButtons = (word) => {
 
   for (let i = 0; i < alphabet.length; i += 1) {
     letters.id = "alphabet";
-    const list = document.createElement("li");
-    list.id = "letter";
-    list.innerHTML = alphabet[i];
+    const letter = document.createElement("li");
+    letter.id = "letter";
+    letter.innerHTML = alphabet[i];
 
-    list.onclick = function () {
+    letter.onclick = function () {
       if (lives < 1) {
         this.onclick = null;
         return;
       }
-      const geussWord = this.innerHTML;
+      const guessWord = this.innerHTML;
       this.setAttribute("class", "active");
       this.onclick = null;
 
       for (let i = 0; i < word.length; i++) {
-        if (word[i] === geussWord) {
+        if (word[i] === guessWord) {
           // here is th error because we didnt define word --
-          guesses[i].innerHTML = geussWord;
+          guesses[i].innerHTML = guessWord;
           counter += 1;
         }
       }
-      const j = word.indexOf(geussWord);
+      const j = word.indexOf(guessWord);
       console.log(j);
       if (j === -1) {
         lives -= 1;
@@ -148,7 +148,7 @@ const renderButtons = (word) => {
       }
       showLives();
     };
-    letters.appendChild(list);
+    letters.appendChild(letter);
   }
   buttonContainer.appendChild(letters);
 };
